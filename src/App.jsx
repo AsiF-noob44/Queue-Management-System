@@ -9,7 +9,10 @@ function App() {
   });
 
   const addToQueue = (customer) => {
-    // add data to queue
+    setQueue((prevQueue) => [
+      ...prevQueue,
+      { id: crypto.randomUUID(), ...customer, status: "waiting" },
+    ]); // Add new customer with unique ID and default status
   };
 
   const updateStatus = (id, newStatus) => {
@@ -36,7 +39,7 @@ function App() {
         <div className="flex flex-col items-center">
           <div className="grid w-full max-w-5xl grid-cols-[1fr_auto_1fr] items-center">
             <span aria-hidden="true" />
-            <header className="text-center text-4xl font-bold dark:text-[hsl(210,70%,56%)] text-shadow-2xs text-shadow-amber-50">
+            <header className="text-center text-4xl font-bold text-gray-900 dark:text-[hsl(210,70%,56%)] text-shadow-2xs text-shadow-amber-50">
               Queue Management System
             </header>
             <div className="flex justify-end">
@@ -57,11 +60,12 @@ function App() {
               </button>
             </div>
           </div>
-          <p className="mt-3 text-md font-semibold dark:text-slate-300">
+          <p className="mt-3 text-md font-semibold text-gray-600 dark:text-slate-300">
             Manage your queues efficiently and effectively
           </p>
         </div>
-        <main className="flex mt-10">
+        <main className="flex mt-16 gap-16">
+          {/* Form and Display Components Here */}
           <Form onAdd={addToQueue} />
         </main>
       </div>
