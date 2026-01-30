@@ -16,7 +16,7 @@ const Form = ({ onAdd }) => {
   };
 
   return (
-    <div className="w-96 bg-gray-50 dark:bg-slate-800 rounded-xl p-8 shadow-xl border-2 border-gray-200 dark:border-slate-700 transition-colors">
+    <div className="w-96 flex-shrink-0 bg-gray-50 dark:bg-slate-800 rounded-xl p-8 shadow-xl border-2 border-gray-200 dark:border-slate-700 transition-colors">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-slate-100 text-center">
         Add to Queue
       </h2>

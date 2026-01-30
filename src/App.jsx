@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 import Form from "./components/Form";
+import Display from "./components/Display";
 function App() {
   const [queue, setQueue] = useState([]);
   const [isDark, setIsDark] = useState(() => {
@@ -16,11 +17,15 @@ function App() {
   };
 
   const updateStatus = (id, newStatus) => {
-    // update customer status
+    setQueue((prevQueue) =>
+      prevQueue.map((customer) =>
+        customer.id === id ? { ...customer, status: newStatus } : customer,
+      ),
+    );
   };
 
   const removeFromQueue = (id) => {
-    // remove customer from queue
+    setQueue((prevQueue) => prevQueue.filter((customer) => customer.id !== id)); // filter only returns true statements so we keep all customers except the one with the matching id
   };
 
   const toggleTheme = () => {
@@ -55,7 +60,11 @@ function App() {
                 }
               >
                 <span className="text-base">
-                  {isDark ? <FiSun /> : <FiMoon />}
+                  {isDark ? (
+                    <FiSun className="text-lg" />
+                  ) : (
+                    <FiMoon className="text-lg" />
+                  )}
                 </span>
               </button>
             </div>
@@ -64,9 +73,15 @@ function App() {
             Manage your queues efficiently and effectively
           </p>
         </div>
-        <main className="flex mt-16 gap-16">
+        <main className="flex mt-16 gap-16 justify-center items-start">
           {/* Form and Display Components Here */}
           <Form onAdd={addToQueue} />
+          <Display
+            queue={queue}
+            onUpdateStatus={updateStatus}
+            onRemove={removeFromQueue}
+          />{" "}
+          {/* Pass queue and handler functions as props */}
         </main>
       </div>
     </>
