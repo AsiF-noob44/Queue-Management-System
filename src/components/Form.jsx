@@ -7,7 +7,9 @@ const Form = ({ onAdd }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !service.trim()) return;
+    if (!name.trim() || !service.trim())
+      return alert("Please fill both fields.");
+
     onAdd({ name: name.trim(), service: service.trim() });
     setName("");
     setService("");
@@ -26,7 +28,7 @@ const Form = ({ onAdd }) => {
             htmlFor="name"
             className="text-sm font-semibold text-gray-700 dark:text-slate-300"
           >
-            Customer Name
+            Customer Name:
           </label>
           <input
             id="name"
@@ -44,7 +46,7 @@ const Form = ({ onAdd }) => {
             htmlFor="service"
             className="text-sm font-semibold text-gray-700 dark:text-slate-300"
           >
-            Service Type
+            Service Type:
           </label>
           <select
             id="service"
@@ -67,7 +69,7 @@ const Form = ({ onAdd }) => {
           type="submit"
           className="mt-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 cursor-pointer"
         >
-          <FiUserPlus className="text-lg" />
+          <FiUserPlus className="text-xl" />
           <span>Add to Queue</span>
         </button>
       </form>
